@@ -21,8 +21,13 @@
     // Assume default net type to be wire because GL netlists don't have the wire definitions
     `default_nettype wire
     `include "gl/user_project_wrapper.v"
-    `include "gl/user_proj_example.v"
+    
 `else
-    `include "user_project_wrapper.v"
-    `include "user_proj_example.v"
+    `include "user_project_wrapper.v"    // Caravel wrapper
+    `include "/Users/azhar/test/verilog/rtl/aes.v"                 // AES top module
+    `include "/Users/azhar/test/verilog/rtl/encryptiontop.v"                     // AES S-Box submodule
+    `include "sbox.v"                     // AES S-Box submodule
+    `include "shiftrows.v"
+    `include "mixcolumns.v"               // AES MixColumns submodule
+    `include "key_expansion.v"            // AES Key Expansion submodule
 `endif
