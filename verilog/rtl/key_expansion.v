@@ -2,6 +2,7 @@ module keyexpansion (
     input wire [255:0] key,
     input wire clk,
     input wire rst,
+    input wire key_enable,
     output reg [127:0] round1,round2,round3,round4,round5,round6,round7,round8,round9,round10,round11,round12,round13,round14,round15
 
 
@@ -119,7 +120,7 @@ always @(*) begin
 		else begin
 
 
-        
+           
             state <= nextstate;
             byte_counter<=0;
             word_counter <= word_counter + 1;
