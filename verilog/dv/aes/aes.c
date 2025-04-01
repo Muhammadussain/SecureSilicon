@@ -32,9 +32,9 @@ void read_ciphertext(uint32_t result[4]) {
 }
 
 int main() {
-    uint32_t pt[4] = {0x00112233, 0x44556677, 0x8899aabb, 0xccddeeff};
-    uint32_t key[8] = {0x00010203, 0x04050607, 0x08090a0b, 0x0c0d0e0f,
-                       0x10111213, 0x14151617, 0x18191a1b, 0x1c1d1e1f};
+    uint32_t pt[4] = {0x33221100, 0x77665544, 0xbbaa9988, 0xffeeddcc};
+    uint32_t key[8] = {0x03020100, 0x07060504, 0x0b0a0908, 0x0f0e0d0c ,
+                       0x13121110, 0x17161514, 0x1b1a1918, 0x1f1e1d1c};
     uint32_t ct[4];
     reg_spi_enable = 1;
     reg_wb_enable = 1;

@@ -28,7 +28,7 @@ module keyexpansion (
    localparam  RC_CON=4'b1001 ;
    localparam  DONE=4'b1011 ;
 
-always @(rot) begin
+always @(*) begin
         sbox_mem[8'h00] = 8'h63; sbox_mem[8'h01] = 8'h7c; sbox_mem[8'h02] = 8'h77; sbox_mem[8'h03] = 8'h7b;
         sbox_mem[8'h04] = 8'hf2; sbox_mem[8'h05] = 8'h6b; sbox_mem[8'h06] = 8'h6f; sbox_mem[8'h07] = 8'hc5;
         sbox_mem[8'h08] = 8'h30; sbox_mem[8'h09] = 8'h01; sbox_mem[8'h0a] = 8'h67; sbox_mem[8'h0b] = 8'h2b;
@@ -109,7 +109,7 @@ always @(rot) begin
         sbox_mem[8'hf8] = 8'h41; sbox_mem[8'hf9] = 8'h99; sbox_mem[8'hfa] = 8'h2d; sbox_mem[8'hfb] = 8'h0f;
         sbox_mem[8'hfc] = 8'hb0; sbox_mem[8'hfd] = 8'h54; sbox_mem[8'hfe] = 8'hbb; sbox_mem[8'hff] = 8'h16;
     end
-    always @(posedge clk ) begin
+    always  @(posedge clk ) begin
 
         if (rst) begin
             state <= IDLE;
@@ -120,15 +120,14 @@ always @(rot) begin
 		else begin
 
 
-            if(key_enable) begin 
-            state <= nextstate;
-            byte_counter<=0;
+            if (key_enable) begin
+                state <= nextstate;
+                 byte_counter<=0;
             word_counter <= word_counter + 1;
             end
-            else begin
-                state <= IDLE;
-                byte_counter<= 0;
-            end
+            
+           
+            
            case (state)
         IDLE: begin
             
@@ -143,6 +142,9 @@ always @(rot) begin
 
         START: begin
             key_in <= key;
+                 round1 <= key[127:0];
+     
+           round2 <=key[255:128];
             if(word_counter==4'h3 && state ==4'h2) begin
                 nextstate <= EXPANSION_1;
             end
@@ -162,7 +164,7 @@ always @(rot) begin
     end 
     else if(sub_roundcounter == 4'h5) begin
         expansion1[31:0]   <= expansion3[31:0] ^ round_constant;
-        expansion1[63:32]  <= expansion3[63:32] ^ expansion1[31:0]       ;
+        expansion1[63:32]  <= expansion3[63:32] ^ expansion1[31:0]   ;
         expansion1[95:64]  <= expansion3[95:64] ^ expansion1[63:32];
         expansion1[127:96] <= expansion3[127:96] ^ expansion1[95:64];
         if(word_counter==4'hc)begin

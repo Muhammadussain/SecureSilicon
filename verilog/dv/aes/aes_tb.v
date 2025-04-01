@@ -11,7 +11,7 @@ reg clock;
 	wire gpio;
 
 
-    always #12.5 clock <= (clock === 1'b0);
+    always #5 clock <= ~clock;	// 100MHz clock
 
 	initial begin
 		clock = 0;

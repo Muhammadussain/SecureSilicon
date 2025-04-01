@@ -48,41 +48,41 @@ module aes #(
            // enable <= 1'b0;
            // encryption_done <= 1'b0;
         end else if  (wbs_stb_i && wbs_cyc_i && wbs_we_i && !wbs_sta_o &&!wbs_ack_o && wbs_adr_i == PLAINTEXT_ADDR)begin
-            plaintext[127:96]    <= wbs_dat_i;
+            plaintext[31:0]    <= wbs_dat_i;
         end
         else if  (wbs_stb_i && wbs_cyc_i && wbs_we_i && !wbs_sta_o  && !wbs_ack_o && wbs_adr_i == PLAINTEXT_ADDR+4)begin
-            plaintext[95:64]   <= wbs_dat_i;
-        end
-        else if  (wbs_stb_i && wbs_cyc_i && wbs_we_i && !wbs_sta_o && wbs_adr_i == PLAINTEXT_ADDR+8)begin
             plaintext[63:32]   <= wbs_dat_i;
         end
+        else if  (wbs_stb_i && wbs_cyc_i && wbs_we_i && !wbs_sta_o && wbs_adr_i == PLAINTEXT_ADDR+8)begin
+            plaintext [95:64]  <= wbs_dat_i;
+        end
         else if  (wbs_stb_i && wbs_cyc_i && wbs_we_i && !wbs_sta_o && wbs_adr_i == PLAINTEXT_ADDR+12)begin
-            plaintext[31:0]  <= wbs_dat_i;
+            plaintext[127:96]  <= wbs_dat_i;
         end
         else if  (wbs_stb_i && wbs_cyc_i && wbs_we_i && !wbs_sta_o && wbs_adr_i == KEY_ADDR)begin
-            key_i[255:224]   <= wbs_dat_i;
+            key_i[31:0]    <= wbs_dat_i;
         end
         else if  (wbs_stb_i && wbs_cyc_i && wbs_we_i && !wbs_sta_o && wbs_adr_i == KEY_ADDR+4)begin
-            key_i[223:192]  <= wbs_dat_i;
+            key_i[63:32]   <= wbs_dat_i;
         end
         else if  (wbs_stb_i && wbs_cyc_i && wbs_we_i && !wbs_sta_o && wbs_adr_i == KEY_ADDR+8)begin
-            key_i[191:160]  <= wbs_dat_i;
+            key_i[95:64]   <= wbs_dat_i;
         end
         else if  (wbs_stb_i && wbs_cyc_i && wbs_we_i && !wbs_sta_o && wbs_adr_i == KEY_ADDR+12)begin
-            key_i[159:128]  <= wbs_dat_i;
+            key_i[127:96]  <= wbs_dat_i;
         end
         else if  (wbs_stb_i && wbs_cyc_i && wbs_we_i && !wbs_sta_o && wbs_adr_i == KEY_ADDR+16)begin
-            key_i[127:96] <= wbs_dat_i;
+            key_i[159:128] <= wbs_dat_i;
         end
         else if  (wbs_stb_i && wbs_cyc_i && wbs_we_i && !wbs_sta_o && wbs_adr_i == KEY_ADDR+20)begin
-            key_i[95:64] <= wbs_dat_i;
+            key_i[191:160] <= wbs_dat_i;
         end
         else if  (wbs_stb_i && wbs_cyc_i && wbs_we_i && !wbs_sta_o && wbs_adr_i == KEY_ADDR+24)begin
-            key_i[63:32] <= wbs_dat_i;
+            key_i[223:192] <= wbs_dat_i;
         end
        
         else if  (wbs_stb_i && wbs_cyc_i && wbs_we_i && !wbs_sta_o && wbs_adr_i == KEY_ADDR+28)begin
-            key_i[31:0] <= wbs_dat_i;     
+            key_i[255:224] <= wbs_dat_i;     
             enable_o <= 1'b1;
         end
     end
