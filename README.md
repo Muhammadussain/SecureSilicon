@@ -8,3 +8,18 @@
 ## Please fill in your project documentation in this README.md file 
 
 Refer to [README](docs/source/index.md) for this sample project documentation.
+# 🔐 Crypto Accelerator
+
+A lightweight and efficient hardware crypto accelerator that combines **AES-256 in CTR mode** and **SHA3-256** hash functionality. Designed in Verilog and integrated with a Wishbone-compatible interface for easy communication with RISC-V or other SoC platforms.
+
+<h1> ✨ Features</h1>
+
+- ✅ AES-256 encryption in CTR mode
+- ✅ SHA3-256 hashing for data integrity
+- ✅ Wishbone-compatible interface
+- ✅ Memory-mapped I/O for triggering operations
+- ✅ RISC-V firmware example included
+- ✅ FPGA-friendly design
+
+ 📁 Repository Structure
+
