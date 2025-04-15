@@ -6,6 +6,7 @@
 #define KEY_ADDR        (BASE_ADDRESS + 16) // 256-bit, 8 writes
 #define CIPHERTEXT_ADDR (BASE_ADDRESS + 48) // 128-bit, 4 reads
 #define BUTTON_ADDR     (BASE_ADDRESS + 64) // Trigger encryption
+#define CIPHERTEXT_SAVE_ADDR (BASE_ADDRESS + 80)  // Safe, writable region
 
 void send_plaintext(uint32_t data[4]) {
     volatile uint32_t *plaintext_ptr;
@@ -30,7 +31,10 @@ void read_ciphertext(uint32_t result[4]) {
         result[i] = *ciphertext_ptr;
     }
 }
-
+void trigger_encryption() {
+    volatile uint32_t *trigger_ptr = (volatile uint32_t *)(BUTTON_ADDR);
+    *trigger_ptr = 1;  // Writing any value triggers the encryption
+}
 int main() {
     uint32_t pt[4] = {0x33221100, 0x77665544, 0xbbaa9988, 0xffeeddcc};
     uint32_t key[8] = {0x03020100, 0x07060504, 0x0b0a0908, 0x0f0e0d0c ,
@@ -41,6 +45,7 @@ int main() {
    
         send_plaintext(pt);
          send_key(key);
+         trigger_encryption();
          read_ciphertext(ct);
 
 
