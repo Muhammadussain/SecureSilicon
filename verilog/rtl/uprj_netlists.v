@@ -24,10 +24,23 @@
     
 `else
     `include "user_project_wrapper.v"    // Caravel wrapper
-    `include "/Users/azhar/test/verilog/rtl/aes.v"                 // AES top module
-    `include "/Users/azhar/test/verilog/rtl/encryptiontop.v"                     // AES S-Box submodule
-    `include "sbox.v"                     // AES S-Box submodule
-    `include "shiftrows.v"
-    `include "mixcolumns.v"               // AES MixColumns submodule
-    `include "key_expansion.v"            // AES Key Expansion submodule
-`endif
+   // `include "/Users/azhar/test/verilog/rtl/aesctr.v"                 // AES top module
+   `include "/Users/azhar/test/verilog/rtl/encryptedctr.v" 
+`include "/Users/azhar/test/verilog/rtl/cryptotop.v" 
+`include "/User/azhar/test/verilog/rtl/decryptedctr.v" 
+// `include "/Users/azhar/test/verilog/rtl/aes.v"                      // AES top module (disabled)
+`include "/Users/azhar/test/verilog/rtl/encryptiontop.v"              // AES encryption wrapper
+`include "/Users/azhar/test/verilog/rtl/sbox.v"                       // AES S-Box submodule
+`include "/Users/azhar/test/verilog/rtl/shiftrows.v"
+`include "/Users/azhar/test/verilog/rtl/mixcolumns.v"                 // AES MixColumns submodule
+`include "/Users/azhar/test/verilog/rtl/key_expansion.v"              // AES Key Expansion submodule
+// `include "sha.v"                                                   // SHA top module (disabled)
+`include "/Users/azhar/test/verilog/rtl/sha3_256.v"                   // SHA3-256 submodule
+`include "/Users/azhar/test/verilog/rtl/chi.v"
+`include "/Users/azhar/test/verilog/rtl/iota.v"
+`include "/Users/azhar/test/verilog/rtl/fn_top.v"
+`include "/Users/azhar/test/verilog/rtl/padding.v"
+`include "/Users/azhar/test/verilog/rtl/pi.v"
+`include "/Users/azhar/test/verilog/rtl/rho.v"
+`include "/Users/azhar/test/verilog/rtl/theta.v"
+`include "/Users/azhar/test/verilog/rtl/top.v"
